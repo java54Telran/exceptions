@@ -9,10 +9,11 @@ import telran.exceptions.BallBrokenFloor;
 class BallBrokenFloorTest {
 
 	private static final int N_FLOORS = 100;
+	private static final int N_RUNS = N_FLOORS * 4;
 
 	@Test
 	void test() {
-		for (int i = 0; i < 300; i++) {
+		for (int i = 0; i < N_RUNS; i++) {
 			BallBrokenFloor bbf = new BallBrokenFloor(N_FLOORS);
 			assertEquals(bbf.getBrokenFloor(), getMinBrokenFloor(bbf));
 		}
