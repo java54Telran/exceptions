@@ -12,16 +12,29 @@ class BallBrokenFloorTest {
 
 	@Test
 	void test() {
-		BallBrokenFloor bbf = new BallBrokenFloor(N_FLOORS);
-		assertEquals(bbf.getBrokenFloor(), getMinBrokenFloor(bbf));
+		for (int i = 0; i < 300; i++) {
+			BallBrokenFloor bbf = new BallBrokenFloor(N_FLOORS);
+			assertEquals(bbf.getBrokenFloor(), getMinBrokenFloor(bbf));
+		}
 	}
 
 	private int getMinBrokenFloor(BallBrokenFloor bbf) {
-		// TODO
 		//using binary search algorithm and only method checkFloor
 		//of the class BallBrokenFloor 
 		//you should find minimal floor, from which a ball will be broken
-		return -1;
+		int lowerFloor = 1;
+		int upperFloor = N_FLOORS;
+		int intermediate = (lowerFloor + upperFloor) / 2;
+		while (lowerFloor <= upperFloor) {
+			try {
+				bbf.checkFloor(intermediate);
+				lowerFloor = intermediate + 1;
+			} catch (Exception e) {
+				upperFloor = intermediate - 1;
+			}
+			intermediate = (lowerFloor + upperFloor) / 2;
+		}
+		return lowerFloor;
 	}
 
 }
